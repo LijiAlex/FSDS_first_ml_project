@@ -1,4 +1,3 @@
-from asyncio.log import logger
 from flask import Flask
 import housing
 from housing.logger import logging
