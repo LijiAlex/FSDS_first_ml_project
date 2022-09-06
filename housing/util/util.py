@@ -3,9 +3,6 @@ import os
 import sys
 from housing.exception import HousingException
 
-print(os.listdir("."))
-config_file_path = os.path.join("..\config","config.yaml")
-
 def read_yaml_file(file_path:str)->dict:
     """
     Reads YAML file and returns contents as a dictionary.
