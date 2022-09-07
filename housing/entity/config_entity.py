@@ -5,8 +5,8 @@ Consider named tuple as structs or classes with only attribute
 """
 """
 1. Download url
-2. Downloded file- compressed file
-3. Extract folder- decompressed file
+2. Location to keep downloded file- compressed file
+3. Place to extract the tgz file ie keep raw dataset- decompressed file
 4. Train dataset folder
 5. Test dataset folder
 """
