@@ -14,9 +14,12 @@ class HousingException(Exception):
         error_detail: Object of sys module
         """
         _, _, exec_tb = error_detail.exc_info()
-        line_number = exec_tb.tb_frame.f_lineno
+        exception_line_no = exec_tb.tb_frame.f_lineno
+        try_line_number = exec_tb.tb_lineno
         file_name = exec_tb.tb_frame.f_code.co_filename
-        error_message = f"Error occured at {line_number} in script {file_name}, error message: {error_message}"
+        error_message = f"""[Script {file_name}:\n 
+        Error occured at try block {try_line_number}, exception block {exception_line_no},\n 
+        error message: {error_message}]"""
         return error_message
 
     def __str__(self):
