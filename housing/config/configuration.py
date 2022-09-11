@@ -48,8 +48,16 @@ class Configuration:
         try:
             data_validation_config_info = self.config_info[DATA_VALIDATION_CONFIG_KEY]
             data_validation_schema_file_name = data_validation_config_info[DATA_VALIDATION_SCHEMA_FILE_NAME]
-            file_path = os.path.join(data_validation_schema_file_name)
-            data_validation_config_info = DataValidationConfig(schema_file_path=file_path)
+            file_path = os.path.join(ROOT_DIR, data_validation_config_info[DATA_VALIDATION_SCHEMA_DIR], data_validation_schema_file_name)
+            data_validation_artifact_dir = os.path.join(self.get_training_pipeline_config().artifact_dir, DATA_VALIDATION_ARTIFACT_DIR, self.time_stamp)
+            report_file_name = data_validation_config_info[DATA_VALIDATION_REPORT_NAME]
+            report_file_path = os.path.join(data_validation_artifact_dir, report_file_name)
+            report_page_file_name = data_validation_config_info[DATA_VALIDATION_REPORT_PAGE_NAME]
+            report_page_file_path = os.path.join(data_validation_artifact_dir, report_page_file_name)
+            data_validation_config_info = DataValidationConfig(
+                schema_file_path = file_path, 
+                report_file_path = report_file_path, 
+                report_page_file_path = report_page_file_path) 
             logging.info(f"DataValidationConfig: {data_validation_config_info}")
             return data_validation_config_info
         except Exception as e:

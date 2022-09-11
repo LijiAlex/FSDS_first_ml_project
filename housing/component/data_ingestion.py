@@ -16,7 +16,7 @@ class DataIngestion:
         try:
             logging.info(f"{'*'*20}Data Ingestion Log{'*'*20}")
             self.data_ingestion_config = data_ingetion_config
-        except Exception() as e:
+        except Exception as e:
             raise HousingException(e, sys) from e
 
     def download_housing_data(self)->str:
@@ -36,7 +36,7 @@ class DataIngestion:
             urllib.request.urlretrieve(download_url, tgz_file_path)
             logging.info(f"Download completed. File [{tgz_file_path}] downloaded successfully")
             return tgz_file_path
-        except Exception() as e:
+        except Exception as e:
             raise HousingException(e, sys) from e
 
 
@@ -50,7 +50,7 @@ class DataIngestion:
             with tarfile.open(tgz_file_path) as housing_tgz_file_obj:
                 housing_tgz_file_obj.extractall(raw_data_dir)
             logging.info(f"Extraction completed successfully")
-        except Exception() as e:
+        except Exception as e:
             raise HousingException(e, sys) from e
 
     def split_data_as_train_test(self)->DataIngestionArtifact:
@@ -108,7 +108,7 @@ class DataIngestion:
             logging.info(f"DataIngestionArtifact: [{data_ingestion_artifact}]")
             return data_ingestion_artifact
 
-        except Exception() as e:
+        except Exception as e:
             raise HousingException(e, sys) from e
 
     def initiate_data_ingestion(self)->DataIngestionArtifact:

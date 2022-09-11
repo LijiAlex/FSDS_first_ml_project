@@ -24,7 +24,11 @@ DATA_INGESTION_TEST_DIR = "ingested_test_dir"
 DATA_INGESTION_ARTIFACT_DIR = "data_ingestion"
 
 DATA_VALIDATION_CONFIG_KEY = "data_validation_config"
+DATA_VALIDATION_SCHEMA_DIR = "schema_dir"
 DATA_VALIDATION_SCHEMA_FILE_NAME = "schema_file_name"
+DATA_VALIDATION_ARTIFACT_DIR = "data_validation"
+DATA_VALIDATION_REPORT_NAME = "report_file_name"
+DATA_VALIDATION_REPORT_PAGE_NAME = "report_page_file_name"
 
 DATA_TRANSFORMATION_CONFIG_KEY = "data_transformation_config"
 DATA_TRANSFORMATION_ARTIFACT_DIR = "data_transformation"
@@ -46,3 +50,10 @@ MODEL_EVALUATION_FILE_NAME = "model_evaluation_file_name"
 
 MODEL_PUSH_CONFIG_INFO_KEY = "model_pusher_config"
 MODEL_EXPORT_DIR = "model_export_dir"
+
+SCHEMA_FILE_COLUMNS_KEY = "columns"
+SCHEMA_FILE_NUMERICAL_COLUMNS = "numerical_columns"
+SCHEMA_FILE_CATEGORICAL_COLUMNS = "categorical_columns"
+SCHEMA_FILE_TARGET_COLUMNS = "target_column"
+SCHEMA_FILE_DOMAIN_VALUES_KEY = "domain_value"
+
