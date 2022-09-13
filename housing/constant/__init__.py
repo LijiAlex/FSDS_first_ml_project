@@ -52,8 +52,11 @@ MODEL_PUSH_CONFIG_INFO_KEY = "model_pusher_config"
 MODEL_EXPORT_DIR = "model_export_dir"
 
 SCHEMA_FILE_COLUMNS_KEY = "columns"
-SCHEMA_FILE_NUMERICAL_COLUMNS = "numerical_columns"
-SCHEMA_FILE_CATEGORICAL_COLUMNS = "categorical_columns"
 SCHEMA_FILE_TARGET_COLUMNS = "target_column"
 SCHEMA_FILE_DOMAIN_VALUES_KEY = "domain_value"
 
+
+COLUMN_TOTAL_ROOMS = "total_rooms"
+COLUMN_TOTAL_BEDROOM = "total_bedrooms"
+COLUMN_POPULATION = "population"
+COLUMN_HOUSEHOLDS = "households"

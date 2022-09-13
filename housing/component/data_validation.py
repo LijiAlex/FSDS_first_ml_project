@@ -65,9 +65,9 @@ class DataValidation:
             data_drift = False
             report = self.save_data_drift_report()
             self.save_data_drift_report_page()
-            # check how this can be done effectively - maybe take help of constants
+            # check how this can be done appropriately - maybe take help of config.yaml and constants
             data_drift = report['data_drift']['data']['metrics']['dataset_drift']
-            if not data_drift:
+            if data_drift:
                 raise Exception(f"Data drift detected")
         except Exception as e:
             raise HousingException(e, sys) from e
@@ -92,7 +92,7 @@ class DataValidation:
             report_file_path = self.data_validation_config.report_file_path
             report_dir = os.path.dirname(report_file_path)
             os.makedirs(report_dir, exist_ok=True)
-            logging.info(f"Writing report to [{report_file_path}]")
+            logging.info(f"Writing report to [{report_file_path} ]")
             with open(report_file_path, "w") as report_file:
                 json.dump(report, report_file, indent=6)
             return report
@@ -109,7 +109,7 @@ class DataValidation:
             report_page_dir = os.path.dirname(report_page_file_path)
             os.makedirs(report_page_dir, exist_ok=True)
             dashboard.save(report_page_file_path)
-            logging.info(f"HTML report saved to [{report_page_file_path}]")
+            logging.info(f"HTML report saved to [{report_page_file_path} ]")
         except Exception as e:
             raise HousingException(e, sys) from e
 
@@ -131,6 +131,12 @@ class DataValidation:
                 is_validated = True,
                 message = "Data Validation Performed Successfully"
             )
+            return data_validation_artifact
         except Exception as e:
             raise HousingException(e, sys) from e
         
+    def __del__(self):
+        """
+        Acts as destructor. Called before all references to the class object are deleted.
+        """
+        logging.info(f"{'*' *25} Data Validation log completed {'*' *25}")
