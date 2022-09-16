@@ -31,7 +31,7 @@ DataTransformationConfig = namedtuple("DataTransformationConfig",
 1. path to pickle file where model is saved
 2. minimum accuracy a model should achieve
 """
-ModelTrainConfig = namedtuple("ModelTrainConfig", ["trained_model_file_path", "base_accuracy"])
+ModelTrainConfig = namedtuple("ModelTrainConfig", ["trained_model_file_path", "base_accuracy", "model_config_file_path"])
 
 """
 1. 

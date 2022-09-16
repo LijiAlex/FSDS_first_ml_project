@@ -173,7 +173,9 @@ class ModelFactory:
 
             self.models_initialization_config: dict = dict(self.config[MODEL_SELECTION_KEY])
 
+            # object of model supplied through yaml before training
             self.initialized_model_list = None
+            # all the accepted models(> base accuracy) with best configurations of parameters
             self.grid_searched_best_model_list = None
 
         except Exception as e:

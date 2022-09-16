@@ -1,15 +1,13 @@
 from distutils.command.config import config
-from housing.component import data_ingestion
-from housing.component import data_validation
-from housing.component import data_transformation
-from housing.component.data_transformation import DataTransformation
 from housing.config.configuration import Configuration
 from housing.exception import HousingException
 from housing.logger import logging
-from housing.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact
-from housing.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig
+from housing.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact, ModelTrainArtifact
+from housing.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainConfig
 from housing.component.data_ingestion import DataIngestion
 from housing.component.data_validation import DataValidation
+from housing.component.model_training import ModelTrainer
+from housing.component.data_transformation import DataTransformation
 
 import os, sys
 
@@ -42,8 +40,13 @@ class Pipeline:
         except Exception as e:
             raise HousingException(e, sys) from e
 
-    def start_model_trainer(self):
-        pass
+    def start_model_trainer(self, data_transformation_artifact)-> ModelTrainArtifact:
+        try:
+            model_trainer = ModelTrainer(model_train_config=self.config.get_model_train_config(), 
+            data_transformation_artifact=data_transformation_artifact)
+            return model_trainer.initiate_model_training()
+        except Exception as e:
+            raise HousingException(e, sys) from e
 
     def start_model_evaluation(self):
         pass
@@ -56,5 +59,6 @@ class Pipeline:
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact)
             data_transformation_artifact = self.start_data_transformation(data_validation_artifact, data_ingestion_artifact)
+            model_trainer_artifact = self.start_model_trainer(data_transformation_artifact)
         except Exception as e:
             raise HousingException(e, sys) from e

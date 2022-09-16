@@ -88,12 +88,25 @@ class Configuration:
     def get_model_train_config(self)->ModelTrainConfig:
         try:
             model_train_config_info = self.config_info[MODEL_TRAINER_CONFIG_INFO]
-            trained_model_dir = os.path.join(self.get_training_pipeline_config().artifact_dir, TRAINED_MODEL_DIR, self.time_stamp)
+            artifact_dir = self.training_pipeline_config.artifact_dir
+
+            model_trainer_artifact_dir=os.path.join(
+                artifact_dir,
+                MODEL_TRAINER_ARTIFACT_DIR,
+                self.time_stamp
+            )
+            trained_model_dir = os.path.join(model_trainer_artifact_dir, TRAINED_MODEL_DIR, self.time_stamp)
             trained_model_file_path = os.path.join(trained_model_dir, model_train_config_info[TRIANED_MODEL_FILENAME])
             base_accuracy = model_train_config_info[BASE_ACCURACY]
+
+            model_config_file_path = os.path.join(model_train_config_info[MODEL_CONFIG_DIR],
+            model_train_config_info[MODEL_CONFIG_FILE_NAME]
+            )
+
             model_train_config_info = ModelTrainConfig(
                 trained_model_file_path = trained_model_file_path, 
-                base_accuracy = base_accuracy
+                base_accuracy = base_accuracy,
+                model_config_file_path = model_config_file_path
                 )
             logging.info(f"ModelTrainingConfig: {model_train_config_info}")
             return model_train_config_info
