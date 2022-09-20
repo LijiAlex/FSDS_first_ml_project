@@ -51,9 +51,15 @@ MODEL_EVALUATION_CONFIG_KEY = "model_evaluation_config"
 MODEL_EVALUATION_DIR = "model_evaluation"
 MODEL_EVALUATION_FILE_NAME = "model_evaluation_file_name"
 
+# model_evaluation.yaml
+BEST_MODEL_KEY = "best_model"
+HISTORY_KEY = "history"
+MODEL_PATH_KEY = "model_path"
+
 MODEL_PUSH_CONFIG_INFO_KEY = "model_pusher_config"
 MODEL_EXPORT_DIR = "model_export_dir"
 
+# schema.yaml
 SCHEMA_FILE_COLUMNS_KEY = "columns"
 SCHEMA_FILE_TARGET_COLUMNS = "target_column"
 SCHEMA_FILE_DOMAIN_VALUES_KEY = "domain_value"

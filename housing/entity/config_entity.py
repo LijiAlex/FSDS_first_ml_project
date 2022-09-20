@@ -42,7 +42,7 @@ ModelEvaluationConfig = namedtuple("ModelEvaluationConfig", ["model_evaluation_f
 """
 1. Where deployed model has to be kept
 """
-ModelPushConfig = namedtuple("ModelPushConfig", ["export_dir_path"])
+ModelPusherConfig = namedtuple("ModelPushConfig", ["export_dir_path"])
 
 """
 1. Where artifacts are kept

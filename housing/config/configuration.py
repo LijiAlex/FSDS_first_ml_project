@@ -1,7 +1,7 @@
 # use entity/config_entity.py and input from config/config.yaml
 import sys
 from housing.entity.config_entity import DataIngestionConfig, DataTransformationConfig, DataValidationConfig
-from housing.entity.config_entity import ModelEvaluationConfig, ModelPushConfig, ModelTrainConfig, TrainingPipeLineConfig
+from housing.entity.config_entity import ModelEvaluationConfig, ModelPusherConfig, ModelTrainConfig, TrainingPipeLineConfig
 from housing.constant import *
 from housing.util.util import read_yaml_file
 from housing.exception import HousingException
@@ -116,7 +116,10 @@ class Configuration:
     def get_model_evaluation_config(self)->ModelEvaluationConfig:
         model_evaluation_config_info = self.config_info[MODEL_EVALUATION_CONFIG_KEY]
         model_evaluation_file_name = model_evaluation_config_info[MODEL_EVALUATION_FILE_NAME]
-        model_evaluation_file_path = os.path.join(MODEL_EVALUATION_DIR, model_evaluation_file_name)
+        artifact_dir = os.path.join(self.training_pipeline_config.artifact_dir,
+                                        MODEL_EVALUATION_DIR)
+
+        model_evaluation_file_path = os.path.join(artifact_dir, model_evaluation_file_name)
         try:
             model_evaluation_config_info = ModelEvaluationConfig(
                 model_evaluation_file_path = model_evaluation_file_path, 
@@ -127,14 +130,16 @@ class Configuration:
         except Exception as e:
             raise HousingException(e, sys) from e
 
-    def get_model_push_config(self)->ModelPushConfig:
+    def get_model_pusher_config(self)->ModelPusherConfig:
         try:
-            export_dir = os.path.join(self.get_training_pipeline_config().artifact_dir, MODEL_EXPORT_DIR, self.time_stamp)
-            model_push_config_info = ModelPushConfig(
-                export_dir_path = export_dir
-                )
-            logging.info(f"ModelPushConfig: {model_push_config_info}")
-            return model_push_config_info
+            time_stamp = f"{datetime.now().strftime('%Y%m%d%H%M%S')}"
+            model_pusher_config_info = self.config_info[MODEL_PUSH_CONFIG_INFO_KEY]
+            export_dir_path = os.path.join(ROOT_DIR, model_pusher_config_info[MODEL_EXPORT_DIR],
+                                           time_stamp)
+
+            model_pusher_config = ModelPusherConfig(export_dir_path=export_dir_path)
+            logging.info(f"Model pusher config {model_pusher_config}")
+            return model_pusher_config            
         except Exception as e:
             raise HousingException(e, sys) from e
 
