@@ -16,7 +16,5 @@ def main():
         print(e)
         logging.error(f"{e}")
 
-
-
 if __name__=="__main__":
     main()
