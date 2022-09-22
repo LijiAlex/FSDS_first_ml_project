@@ -30,11 +30,11 @@ class DataIngestion:
             # get the file name
             housing_file_name = os.path.basename(download_url)
             # complete path to download
-            # tgz_file_path = os.path.join(tqz_download_dir, housing_file_name)
-            tgz_file_path = r"D:\Ineuron\Projects\HousingPrediction\FSDS_first_ml_project\housing\artifact\data_ingestion\2022-09-12-12-11-06\tgz_data\housing.tgz"
+            tgz_file_path = os.path.join(tqz_download_dir, housing_file_name)
+            # tgz_file_path = r"D:\Ineuron\Projects\HousingPrediction\FSDS_first_ml_project\housing\artifact\data_ingestion\2022-09-12-12-11-06\tgz_data\housing.tgz"
             logging.info(f"Downloading file [{housing_file_name}] from [{download_url}] into [{tgz_file_path}]")
             # get file from url
-            #urllib.request.urlretrieve(download_url, tgz_file_path)
+            urllib.request.urlretrieve(download_url, tgz_file_path)
             logging.info(f"Download completed. File [{tgz_file_path}] downloaded successfully")
             return tgz_file_path
         except Exception as e:
