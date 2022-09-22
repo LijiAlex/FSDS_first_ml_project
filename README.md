@@ -13,12 +13,12 @@ Build a model of housing prices in California using the California census data. 
 
 ### Pipeline Components
 
-Data Ingestion
-Data Validation
-Data Transformation
-Model Training
-Model Evaluation
-Model Push
+* Data Ingestion
+* Data Validation
+* Data Transformation
+* Model Training
+* Model Evaluation
+* Model Push
 
 
 ### Exception
