@@ -30,12 +30,12 @@ Investment Analysis for a particular area.
 
 ### Pipeline Components
 
-Data Ingestion
-Data Validation
-Data Transformation
-Model Training
-Model Evaluation
-Model Push
+* Data Ingestion
+* Data Validation
+* Data Transformation
+* Model Training
+* Model Evaluation
+* Model Push
 
 
 ### Exception
